@@ -21,16 +21,16 @@ import (
 	"io"
 )
 
-type Dcm interface {
+type Void interface {
 	Name() string
 	Title() string
 	DataCenter() DataCenter
 }
 
-func New(r io.Reader) (Dcm, error) {
-	var d dcm
+func New(r io.Reader) (Void, error) {
+	var v void
 	for {
-		err := json.NewDecoder(r).Decode(&d)
+		err := json.NewDecoder(r).Decode(&v)
 		if err == io.EOF {
 			break
 		}
@@ -38,23 +38,23 @@ func New(r io.Reader) (Dcm, error) {
 			return nil, err
 		}
 	}
-	return &d, nil
+	return &v, nil
 }
 
-type dcm struct {
+type void struct {
 	Name_       string      `json:"name"`
 	Title_      string      `json:"title"`
 	DataCenter_ *datacenter `json:"datacenter"`
 }
 
-func (d *dcm) Name() string {
-	return d.Name_
+func (v *void) Name() string {
+	return v.Name_
 }
 
-func (d *dcm) Title() string {
-	return d.Title_
+func (v *void) Title() string {
+	return v.Title_
 }
 
-func (d *dcm) DataCenter() DataCenter {
-	return d.DataCenter_
+func (v *void) DataCenter() DataCenter {
+	return v.DataCenter_
 }

@@ -35,13 +35,13 @@ func main() {
 		}
 	`
 
-	dcm, err := New(strings.NewReader(cfg))
+	void, err := New(strings.NewReader(cfg))
 	if err != nil {
 		fmt.Printf(err.Error())
 		os.Exit(1)
 	}
 
-	fmt.Printf("name:  %s\n", dcm.Name())
-	fmt.Printf("title: %s\n", dcm.Title())
-	fmt.Printf("dc:    %s\n", dcm.DataCenter().Name())
+	fmt.Printf("name:  %s\n", void.Name())
+	fmt.Printf("title: %s\n", void.Title())
+	fmt.Printf("dc:    %s\n", void.DataCenter().Name())
 }
